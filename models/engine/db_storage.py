@@ -41,13 +41,25 @@ class DBStorage:
             Base.metadata.drop_all(self.__engine)
 
 
+    def count(self, cls=None):
+        """
+        count the number of objects in storage
+        Returns number of objects in storage matching the given class
+            if no class is passed returns all objects in storage
+        """
+        if cls is None:
+            cls = classes.values()
+	    if cls in classes.values():
+            return len(self.all(cls))
+
+
     def get(self, cls, id):
         """
         retrieve one object
         """
-        for obj in self.all(cls).values():
-            if obj.id == id:
-                return obj
+	    if cls in classes.values():
+	        all_objs = self.all(cls)
+       	    return all_objs.get(id, None)
         return None
 
 
