@@ -41,7 +41,7 @@ class DBStorage:
             Base.metadata.drop_all(self.__engine)
 
     def get(self, cls, id):
-        """ 
+        """
          retrieve one object:
         """
         if cls in classes.values() and id and type(id) == str:
@@ -53,12 +53,11 @@ class DBStorage:
             return None
 
     def count(self, cls=None):
-        """ 
+        """
         count the number of objects in storage:
         """
         data = self.all(cls)
         return len(data)
-
 
     def all(self, cls=None):
         """query on the current database session"""
