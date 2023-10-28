@@ -31,7 +31,8 @@ class FileStorage:
             for key, value in d_obj.items():
                 if key.split(".")[1] == id:
                     return value
-        return None
+        if cls not in classes.values():
+            return None
 
     def count(self, cls=None):
         """ counts """
